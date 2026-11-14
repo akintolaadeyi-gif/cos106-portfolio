@@ -266,6 +266,18 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
 .plain-list li:last-child { border-bottom: none; }
 .plain-list p { font-size: var(--fs-small); color: var(--muted); }
 
+/* ---------- Data table (About: certifications) ---------- */
+.section-tight { padding-top: 0; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: var(--radius); }
+.data-table { width: 100%; border-collapse: collapse; font-size: var(--fs-small); min-width: 520px; }
+.data-table caption { caption-side: bottom; text-align: left; padding: 0.6rem 1rem; color: var(--muted); font-size: 0.8rem; }
+.data-table th { text-align: left; background: var(--navy); color: #fff; font-weight: 600; padding: 0.7rem 1rem; }
+.data-table td { padding: 0.7rem 1rem; border-top: 1px solid var(--line); }
+.data-table tbody tr:nth-child(even) { background: var(--surface); }
+.status { display: inline-block; padding: 0.1rem 0.55rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+.status.done { background: rgba(21, 128, 61, 0.12); color: var(--success); }
+.status.pending { background: var(--accent-soft); color: var(--accent); }
+
 /* ---------- Custom video player ---------- */
 .player { border-radius: var(--radius); overflow: hidden; background: #000; position: relative; }
 .player video { width: 100%; aspect-ratio: 16 / 9; background: #000; }
