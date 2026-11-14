@@ -4,7 +4,8 @@
    2. Light / dark theme switch (saved in localStorage)
    3. Scroll reveal animation (IntersectionObserver)
    4. Animated number counters on the home page
-   5. Current year in the footer
+   5. Tech-stack marquee (clones the list for a seamless loop)
+   6. Current year in the footer
    ========================================================= */
 
 // ---------- 1. Mobile menu toggle ----------
@@ -102,5 +103,16 @@ document.querySelectorAll("[data-count]").forEach((el) => {
   if (counterObserver) counterObserver.observe(el); else el.textContent = Number(el.dataset.count).toLocaleString();
 });
 
-// ---------- 5. Footer year ----------
+// ---------- 5. Tech-stack marquee ----------
+// CSS moves the track left by 50%. For that to loop without a gap,
+// the track needs two identical lists side by side, so we clone it.
+const marqueeTrack = document.getElementById("marquee-track");
+if (marqueeTrack) {
+  const original = marqueeTrack.querySelector(".marquee-list");
+  const copy = original.cloneNode(true); // true = copy the <li> items too
+  copy.setAttribute("aria-hidden", "true"); // screen readers hear the list once
+  marqueeTrack.appendChild(copy);
+}
+
+// ---------- 6. Footer year ----------
 document.getElementById("year").textContent = new Date().getFullYear();

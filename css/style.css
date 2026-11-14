@@ -179,6 +179,43 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
 }
 .play-btn[aria-pressed="true"] { background: var(--navy); }
 
+/* ---------- Tech-stack marquee ---------- */
+.marquee {
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  /* Fade the strip out at both edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 45s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-list { display: flex; list-style: none; flex-shrink: 0; }
+.marquee-list li {
+  display: flex; align-items: center;
+  padding-inline: 1.5rem;
+  font-size: var(--fs-body); font-weight: 600; color: var(--muted);
+  white-space: nowrap;
+}
+.marquee-list li::after { content: "·"; margin-left: 3rem; color: var(--muted); opacity: 0.5; font-weight: 700; }
+/* The track holds two identical lists, so moving it left by half loops seamlessly */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+  .marquee-track { width: 100%; }
+  .marquee-list { flex-shrink: 1; width: 100%; flex-wrap: wrap; justify-content: center; row-gap: 0.5rem; }
+  .marquee-list[aria-hidden="true"] { display: none; } /* no copy needed when it doesn't move */
+}
+
 /* ---------- Cards (projects) ---------- */
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .card {
@@ -361,6 +398,9 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
   .stats { margin-top: 2rem; }
   .stat strong { font-size: 1.4rem; }
   .listen { gap: 0.75rem; }
+  .marquee { padding-block: 1rem; }
+  .marquee-list li { font-size: var(--fs-small); padding-inline: 1rem; }
+  .marquee-list li::after { margin-left: 2rem; }
 
   /* 16px inputs stop iPhones zooming in when a field is tapped */
   .field input, .field select, .field textarea { font-size: 16px; }
