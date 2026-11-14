@@ -8,8 +8,8 @@
 
 // ---------- 1. Speech synthesis ----------
 const WELCOME_TEXT =
-  "Hi, I'm Akinola Adeyi, a full-stack software engineer. " +
-  "I build and ship production web applications with React, Next dot J S and Node, from the first line of code to deployment. " +
+  "Hi, I'm Akinola Adeyi, a software engineer. I work mainly on the frontend and I'm growing toward full-stack. " +
+  "I build fast, polished interfaces with React, Next dot J S and TypeScript, turning designs and APIs into products people enjoy using. " +
   "Have a look at my projects, try the academic planner, and get in touch if you'd like to work together.";
 
 function getBioText() {

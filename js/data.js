@@ -13,7 +13,7 @@ const projects = [
     description: "Residents report community problems with photos and locations on a live public map. A 7-table Supabase schema with row-level security powers community upvoting and a staff dashboard for resolving issues in real time.",
     image: "assets/img/pulsecity.svg",
     tags: ["React 19", "Supabase", "Google Maps API"],
-    categories: ["full-stack", "real-time"],
+    categories: ["web-app", "real-time"],
     links: { code: "https://github.com/akintolaadeyi-gif/PulseCity" },
     featured: true
   },
@@ -24,18 +24,18 @@ const projects = [
     description: "Live scores, standings and results from 5 external APIs on a 30-second refresh. A data pipeline normalises inconsistent API responses into clean, type-safe tables that non-technical fans can read.",
     image: "assets/img/pitchiq.svg",
     tags: ["Next.js 16", "TypeScript", "Supabase Realtime"],
-    categories: ["full-stack", "real-time"],
+    categories: ["web-app", "real-time"],
     links: { live: "https://pitchiq.vercel.app" },
     featured: true
   },
   {
     title: "Ojú Ibojú",
-    subtitle: "Full-stack streaming platform",
+    subtitle: "Streaming platform",
     year: 2025,
     description: "A streaming platform built on the YouTube Data API with genre rows, search and a Continue Watching feed. I found and removed a cascading fetch bottleneck, cutting load time by 90% (30 s to under 3 s).",
     image: "assets/img/ojuiboju.svg",
     tags: ["React", "Node.js", "Express", "YouTube API"],
-    categories: ["full-stack"],
+    categories: ["web-app"],
     links: { live: "https://ojuiboju.vercel.app" },
     featured: true
   },
