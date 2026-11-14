@@ -88,6 +88,32 @@ a { color: inherit; }
 .skip-link:focus { left: 1rem; z-index: 300; }
 :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 
+/* ---------- Icons (Lucide icon set, lucide.dev, ISC licence) ----------
+   Icons are inline SVGs drawn with currentColor, so they follow the text colour
+   in both themes. Buttons with two states hold both icons; CSS shows one. */
+.icon { width: 1.15em; height: 1.15em; flex: none; vertical-align: -0.2em; stroke-width: 1.75; }
+.icon-sun, .icon-x, .icon-square, .icon-pause, .icon-volume-x, .icon-captions-off { display: none; }
+[data-theme="dark"] #theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] #theme-toggle .icon-sun { display: block; }
+#menu-toggle[aria-expanded="true"] .icon-menu { display: none; }
+#menu-toggle[aria-expanded="true"] .icon-x { display: block; }
+.play-btn[aria-pressed="true"] .icon-play { display: none; }
+.play-btn[aria-pressed="true"] .icon-square { display: block; }
+#play-pause[data-playing="true"] .icon-play { display: none; }
+#play-pause[data-playing="true"] .icon-pause { display: block; }
+#mute-btn[aria-pressed="true"] .icon-volume-2 { display: none; }
+#mute-btn[aria-pressed="true"] .icon-volume-x { display: block; }
+#cc-btn[aria-pressed="false"] .icon-captions { display: none; }
+#cc-btn[aria-pressed="false"] .icon-captions-off { display: block; }
+.play-btn { display: grid; place-items: center; }
+.play-btn .icon { width: 18px; height: 18px; }
+.play-btn .icon-play { transform: translateX(1px); }
+.icon-btn .icon { width: 19px; height: 19px; }
+.plain-list h3 .icon { margin-right: 0.5rem; }
+.footer-social a { display: inline-flex; align-items: center; gap: 0.5rem; }
+.card-links a .icon, .pill-btn .icon { width: 1em; height: 1em; }
+.hero-cta .arrow .icon { width: 16px; height: 16px; }
+
 /* ---------- Header and navigation ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 200;
@@ -303,6 +329,9 @@ h3 { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; margin-botto
   border-radius: var(--radius); padding: 0.3rem 0.85rem; font: inherit; cursor: pointer;
 }
 .player-bar button:hover, .player-bar button[aria-pressed="true"] { background: #fff; color: #000; }
+.player-bar .player-icon { display: grid; place-items: center; width: 36px; height: 32px; padding: 0; }
+#play-pause, #mute-btn, #cc-btn { background: transparent; color: #fff; }
+#play-pause:hover, #mute-btn:hover, #cc-btn:hover { background: #fff; color: #000; }
 .progress { flex: 1; height: 4px; background: rgba(255,255,255,0.25); border-radius: 2px; cursor: pointer; position: relative; }
 .progress-fill { height: 100%; width: 0; background: #fff; border-radius: 2px; }
 .time { font-variant-numeric: tabular-nums; min-width: 80px; text-align: right; }

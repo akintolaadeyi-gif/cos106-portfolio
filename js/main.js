@@ -17,14 +17,13 @@ menuToggle.addEventListener("click", () => {
   const isOpen = navLinks.classList.toggle("open");
   menuToggle.setAttribute("aria-expanded", isOpen);
   menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-  menuToggle.textContent = isOpen ? "✕" : "☰";
+  // CSS swaps the menu and close icons using aria-expanded
 });
 
 function closeMenu() {
   navLinks.classList.remove("open");
   menuToggle.setAttribute("aria-expanded", "false");
   menuToggle.setAttribute("aria-label", "Open menu");
-  menuToggle.textContent = "☰";
 }
 
 // Close the menu after choosing a link, or when the screen becomes wide
@@ -37,7 +36,7 @@ const root = document.documentElement; // the <html> element
 
 function applyTheme(theme) {
   root.setAttribute("data-theme", theme);
-  themeToggle.textContent = theme === "dark" ? "☀" : "☾";
+  // CSS shows the sun icon in dark mode and the moon icon in light mode
   themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
 }
 

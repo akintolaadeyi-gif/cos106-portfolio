@@ -5,6 +5,9 @@
    - Projects: shows all, with filter buttons
    ========================================================= */
 
+// Arrow icon from the Lucide icon set (lucide.dev), used on outbound links
+const ARROW_ICON = '<svg aria-hidden="true" class="icon icon-arrow-up-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>';
+
 // Build the HTML for one card. Template literals (`...`) let us
 // drop values into the markup with ${ }.
 function createCard(project) {
@@ -12,8 +15,8 @@ function createCard(project) {
 
   // Only show the links this project actually has
   let linksHtml = "";
-  if (project.links.live) linksHtml += `<a href="${project.links.live}" target="_blank" rel="noopener">Live site ↗</a>`;
-  if (project.links.code) linksHtml += `<a href="${project.links.code}" target="_blank" rel="noopener">Source code ↗</a>`;
+  if (project.links.live) linksHtml += `<a href="${project.links.live}" target="_blank" rel="noopener">Live site ${ARROW_ICON}</a>`;
+  if (project.links.code) linksHtml += `<a href="${project.links.code}" target="_blank" rel="noopener">Source code ${ARROW_ICON}</a>`;
   if (!linksHtml) linksHtml = `<span class="muted">Client project, link on request</span>`;
 
   return `

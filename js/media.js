@@ -9,7 +9,7 @@
 // ---------- 1. Speech synthesis ----------
 const WELCOME_TEXT =
   "Hi, I'm Akinola Adeyi, a software engineer. I work mainly on the frontend and I'm growing toward full-stack. " +
-  "I build fast, polished interfaces with React, Next dot J S and TypeScript, turning designs and APIs into products people enjoy using. " +
+  "I build websites and web apps with React, Next dot J S and TypeScript. " +
   "Have a look at my projects, try the academic planner, and get in touch if you'd like to work together.";
 
 function getBioText() {
@@ -37,8 +37,8 @@ function setupSpeechButton(button, getText) {
     utterance.lang = "en-GB";
     utterance.rate = 1;
 
-    utterance.onstart = () => { button.textContent = "■"; button.setAttribute("aria-pressed", "true"); };
-    utterance.onend = utterance.onerror = () => { button.textContent = "▶"; button.setAttribute("aria-pressed", "false"); };
+    utterance.onstart = () => button.setAttribute("aria-pressed", "true"); // CSS swaps play for stop
+    utterance.onend = utterance.onerror = () => button.setAttribute("aria-pressed", "false");
 
     speechSynthesis.speak(utterance);
   });
@@ -74,8 +74,8 @@ if (video) {
   video.addEventListener("click", togglePlay);
 
   // Keep the button label in step with the video's real state
-  video.addEventListener("play", () => { playBtn.textContent = "Pause"; playBtn.setAttribute("aria-label", "Pause video"); });
-  video.addEventListener("pause", () => { playBtn.textContent = "Play"; playBtn.setAttribute("aria-label", "Play video"); });
+  video.addEventListener("play", () => { playBtn.dataset.playing = "true"; playBtn.setAttribute("aria-label", "Pause video"); });
+  video.addEventListener("pause", () => { playBtn.dataset.playing = "false"; playBtn.setAttribute("aria-label", "Play video"); });
 
   // Update the progress bar and time as the video plays
   function updateProgress() {
@@ -112,7 +112,7 @@ if (video) {
   // Mute
   muteBtn.addEventListener("click", () => {
     video.muted = !video.muted;
-    muteBtn.textContent = video.muted ? "Unmute" : "Mute";
+    muteBtn.setAttribute("aria-label", video.muted ? "Unmute" : "Mute");
     muteBtn.setAttribute("aria-pressed", video.muted);
   });
 }
