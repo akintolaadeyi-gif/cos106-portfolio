@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects · Akinola Adeyi</title>
+  <meta name="description" content="Projects built and shipped by Akinola Adeyi.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Apply the saved theme before the page paints, so there is no flash of the wrong theme -->
+  <script>
+    // Mark that JavaScript is running, so hidden-until-scrolled content is only hidden when JS can reveal it
+    document.documentElement.classList.add("js");
+    try {
+      const saved = localStorage.getItem("theme");
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main">
+        <a class="logo" href="index.html">Akinola<span>.</span></a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+          <li><a href="planner.html">Planner</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark theme">☾</button>
+          <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <p class="kicker">Projects</p>
+        <h1>Things I've built and shipped</h1>
+        <p class="lead">Production platforms and client websites, each built solo from design to deployment. Filter by the kind of work you're interested in.</p>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <!-- Filter buttons: projects.js reads data-filter and re-renders the grid -->
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="filter-btn active" type="button" data-filter="all">All</button>
+          <button class="filter-btn" type="button" data-filter="full-stack">Full-stack</button>
+          <button class="filter-btn" type="button" data-filter="real-time">Real-time</button>
+          <button class="filter-btn" type="button" data-filter="client">Client websites</button>
+        </div>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+        <div class="grid-3" id="project-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> Akinola Adeyi · Built with HTML, CSS and JavaScript</p>
+      <ul>
+        <li><a href="https://github.com/akintolaadeyi-gif" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/akinola-adeyi" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:akintolaadeyi@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/projects.js"></script>
+</body>
+</html>

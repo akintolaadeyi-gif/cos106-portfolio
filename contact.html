@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact · Akinola Adeyi</title>
+  <meta name="description" content="Get in touch with Akinola Adeyi.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Apply the saved theme before the page paints, so there is no flash of the wrong theme -->
+  <script>
+    // Mark that JavaScript is running, so hidden-until-scrolled content is only hidden when JS can reveal it
+    document.documentElement.classList.add("js");
+    try {
+      const saved = localStorage.getItem("theme");
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main">
+        <a class="logo" href="index.html">Akinola<span>.</span></a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="planner.html">Planner</a></li>
+          <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark theme">☾</button>
+          <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container two-col">
+        <div>
+          <p class="kicker">Contact</p>
+          <h1>Let's work together</h1>
+          <p class="lead">Open to full-time roles, contract work and collaborations. I usually reply within one working day.</p>
+          <ul class="contact-list">
+            <li><span>Email</span><a href="mailto:akintolaadeyi@gmail.com">akintolaadeyi@gmail.com</a></li>
+            <li><span>GitHub</span><a href="https://github.com/akintolaadeyi-gif" target="_blank" rel="noopener">github.com/akintolaadeyi-gif</a></li>
+            <li><span>LinkedIn</span><a href="https://linkedin.com/in/akinola-adeyi" target="_blank" rel="noopener">linkedin.com/in/akinola-adeyi</a></li>
+            <li><span>Location</span>Nigeria · remote (GMT+1)</li>
+          </ul>
+        </div>
+
+        <!-- Contact form: contact.js checks every field before "sending" -->
+        <form class="panel" id="contact-form" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name">
+            <span class="error" data-error-for="name"></span>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email">
+            <span class="error" data-error-for="email"></span>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" maxlength="500"></textarea>
+            <span class="error" data-error-for="message"></span>
+            <span class="small muted" id="char-count">0 / 500</span>
+          </div>
+          <button class="btn btn-primary" type="submit">Send message</button>
+          <p class="form-status" id="form-status" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> Akinola Adeyi · Built with HTML, CSS and JavaScript</p>
+      <ul>
+        <li><a href="https://github.com/akintolaadeyi-gif" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/akinola-adeyi" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:akintolaadeyi@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

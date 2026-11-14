@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic planner · Akinola Adeyi</title>
+  <meta name="description" content="An interactive planner for coursework and deadlines.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Apply the saved theme before the page paints, so there is no flash of the wrong theme -->
+  <script>
+    // Mark that JavaScript is running, so hidden-until-scrolled content is only hidden when JS can reveal it
+    document.documentElement.classList.add("js");
+    try {
+      const saved = localStorage.getItem("theme");
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main">
+        <a class="logo" href="index.html">Akinola<span>.</span></a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="planner.html" class="active" aria-current="page">Planner</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark theme">☾</button>
+          <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <p class="kicker">Academic planner</p>
+        <h1>Keep track of coursework</h1>
+        <p class="lead">Add assignments and deadlines, tick them off when they're done, and delete what you no longer need. Tasks are saved in your browser, so they're still here when you come back.</p>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container planner">
+        <!-- Add-task form: planner.js validates it and creates the task -->
+        <form class="panel" id="task-form" novalidate>
+          <h2>Add a task</h2>
+          <div class="field">
+            <label for="task-title">Task</label>
+            <input id="task-title" name="title" type="text" placeholder="e.g. Finish COS 106 lab report" maxlength="80">
+            <span class="error" id="title-error"></span>
+          </div>
+          <div class="field">
+            <label for="task-course">Course</label>
+            <input id="task-course" name="course" type="text" placeholder="e.g. COS 106" maxlength="20">
+          </div>
+          <div class="field">
+            <label for="task-due">Due date</label>
+            <input id="task-due" name="due" type="date">
+          </div>
+          <div class="field">
+            <label for="task-priority">Priority</label>
+            <select id="task-priority" name="priority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">Add task</button>
+        </form>
+
+        <div>
+          <div class="task-toolbar">
+            <div class="filters" role="group" aria-label="Show tasks" style="margin:0">
+              <button class="filter-btn active" type="button" data-show="all">All</button>
+              <button class="filter-btn" type="button" data-show="active">To do</button>
+              <button class="filter-btn" type="button" data-show="done">Completed</button>
+            </div>
+            <label class="toggle"><input type="checkbox" id="sound-toggle" checked> Sound on completion</label>
+          </div>
+          <p class="task-stats" id="task-stats" aria-live="polite"></p>
+          <div class="progress-line" aria-hidden="true"><div id="progress-bar"></div></div>
+          <ul class="task-list" id="task-list"></ul>
+          <div class="btn-row"><button class="btn btn-ghost" type="button" id="clear-done">Clear completed tasks</button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> Akinola Adeyi · Built with HTML, CSS and JavaScript</p>
+      <ul>
+        <li><a href="https://github.com/akintolaadeyi-gif" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/akinola-adeyi" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:akintolaadeyi@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/planner.js"></script>
+</body>
+</html>

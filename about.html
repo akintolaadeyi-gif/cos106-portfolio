@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About · Akinola Adeyi</title>
+  <meta name="description" content="Education, experience, skills and goals of Akinola Adeyi.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Apply the saved theme before the page paints, so there is no flash of the wrong theme -->
+  <script>
+    // Mark that JavaScript is running, so hidden-until-scrolled content is only hidden when JS can reveal it
+    document.documentElement.classList.add("js");
+    try {
+      const saved = localStorage.getItem("theme");
+      if (saved) document.documentElement.setAttribute("data-theme", saved);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Main">
+        <a class="logo" href="index.html">Akinola<span>.</span></a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active" aria-current="page">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="planner.html">Planner</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark theme">☾</button>
+          <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <p class="kicker">About me</p>
+        <h1>Engineer, documenter, lifelong learner.</h1>
+        <p class="lead">I started in IT support, keeping 15+ departments running as their only technical contact. That taught me to write things down and fix problems at the root. Today I build full-stack web products and study Computer Science at Miva Open University.</p>
+        <div class="listen">
+          <button class="play-btn" id="bio-btn" type="button" aria-pressed="false" aria-label="Listen to this page">▶</button>
+          <p><strong>Listen to this page</strong>Your browser reads my profile aloud.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video introduction with a custom player (media.js) -->
+    <section class="section-alt">
+      <div class="container two-col">
+        <div class="reveal">
+          <p class="kicker">Video introduction</p>
+          <h2>My story in 40 seconds</h2>
+          <p class="muted">A short video résumé: who I am, what I've built and where I'm going. Captions are on by default and can be switched off.</p>
+        </div>
+        <div class="player reveal" id="intro-player">
+          <video id="intro-video" preload="metadata" poster="assets/media/intro-poster.png" playsinline>
+            <source src="assets/media/intro.mp4" type="video/mp4">
+            <source src="assets/media/intro.webm" type="video/webm">
+            <track kind="captions" src="assets/media/intro-captions.vtt" srclang="en" label="English" default>
+            Your browser does not support HTML video.
+          </video>
+          <div class="player-bar">
+            <button type="button" id="play-pause" aria-label="Play video">Play</button>
+            <div class="progress" id="progress" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><div class="progress-fill" id="progress-fill"></div></div>
+            <span class="time" id="time">0:00 / 0:00</span>
+            <button type="button" id="cc-btn" aria-pressed="true">CC</button>
+            <button type="button" id="mute-btn" aria-pressed="false">Mute</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container two-col">
+        <div class="reveal">
+          <p class="kicker">Education</p>
+          <h2>Education background</h2>
+          <ul class="timeline">
+            <li><span class="when">2025 – present</span><h3>B.Eng Computer Science (in view)</h3><p>Miva Open University</p></li>
+            <li><span class="when">2016 – 2018</span><h3>Diploma, Software Engineering</h3><p>University of Ilorin</p></li>
+            <li><span class="when">2023 – present</span><h3>Continuous learning</h3><p>FreeCodeCamp, Scrimba and MDN. Scrimba certificates in JavaScript and Intro to AI Engineering; Full Stack Developer in progress.</p></li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <p class="kicker">Experience</p>
+          <h2>Work experience</h2>
+          <ul class="timeline">
+            <li><span class="when">2026 – present</span><h3>Frontend Developer · Folde Studio</h3><p>Shipped the studio's website in 2 days, solo. Building React and TypeScript dashboards for an AI-powered HR platform.</p></li>
+            <li><span class="when">2025 – 2026</span><h3>Web Developer (contract) · Azawire Africa</h3><p>Delivered the production website in Framer on schedule, with no post-launch rework.</p></li>
+            <li><span class="when">2023 – 2025</span><h3>IT Support Engineer · Institut Français du Nigéria</h3><p>Sole technical contact for 15+ departments, with 95%+ system uptime.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container two-col">
+        <div class="reveal">
+          <p class="kicker">Technical skills</p>
+          <h2>Tools I use every day</h2>
+          <div class="skill-groups">
+            <div class="skill-group"><h3>Languages</h3><ul class="tags"><li>JavaScript (ES6+)</li><li>TypeScript</li><li>HTML5</li><li>CSS3</li></ul></div>
+            <div class="skill-group"><h3>Frontend</h3><ul class="tags"><li>React</li><li>Next.js</li><li>React Router</li><li>Tailwind CSS</li><li>Framer</li></ul></div>
+            <div class="skill-group"><h3>Backend and data</h3><ul class="tags"><li>Node.js</li><li>Express</li><li>REST APIs</li><li>PostgreSQL</li><li>Supabase</li></ul></div>
+            <div class="skill-group"><h3>Tooling</h3><ul class="tags"><li>Git and GitHub</li><li>Vite</li><li>Vercel</li><li>Railway</li><li>Chrome DevTools</li><li>Figma</li></ul></div>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="kicker">Career aspirations</p>
+          <h2>Where I'm heading</h2>
+          <ul class="plain-list">
+            <li><h3>Senior full-stack engineer</h3><p>Lead the architecture of products used by thousands of people, for remote teams across Africa and beyond.</p></li>
+            <li><h3>AI-powered products</h3><p>Build practical tools on top of AI models, growing from my Scrimba AI Engineering work and the HR platform at Folde Studio.</p></li>
+            <li><h3>Civic and social impact</h3><p>Keep building technology for communities, like PulseCity and the Canann Impact Foundation website.</p></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">Hobbies and interests</p>
+          <h2>Away from the keyboard</h2>
+        </div>
+        <ul class="grid-3 plain-list reveal">
+          <li><h3>⚽ Football</h3><p>Following leagues and live scores, which is where the idea for PitchIQ came from.</p></li>
+          <li><h3>🎬 African film and music</h3><p>Nollywood and Afrobeats, the inspiration for the Ojú Ibojú streaming platform.</p></li>
+          <li><h3>📚 Learning in public</h3><p>Courses on Scrimba and FreeCodeCamp, and writing documentation others can follow.</p></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> Akinola Adeyi · Built with HTML, CSS and JavaScript</p>
+      <ul>
+        <li><a href="https://github.com/akintolaadeyi-gif" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/akinola-adeyi" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="mailto:akintolaadeyi@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/media.js"></script>
+</body>
+</html>
