@@ -155,6 +155,16 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
 .stat strong { display: block; font-size: var(--fs-h2); line-height: 1.2; color: var(--text); }
 .stat > span { font-size: var(--fs-small); color: var(--muted); }
 
+/* Hero with portrait: text on the left, photo on the right */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 3rem; align-items: center; }
+.portrait { display: block; }
+.portrait img {
+  width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+  border-radius: 12px; background: var(--surface);
+  box-shadow: 0 20px 40px rgba(20, 33, 61, 0.12);
+}
+.portrait-sm { max-width: 300px; justify-self: end; }
+
 /* Audio welcome strip */
 .listen {
   display: flex; align-items: center; gap: 1rem; margin-top: 2rem;
@@ -323,6 +333,7 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
 
 /* Tablets and small laptops */
 @media (max-width: 900px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr) 260px; gap: 2rem; }
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .two-col, .planner { grid-template-columns: 1fr; gap: 2rem; }
   .stats { grid-template-columns: 1fr 1fr; }
@@ -341,6 +352,9 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
   .nav-links a { display: block; padding: 0.9rem var(--gutter); border-bottom: 1px solid var(--line); font-size: var(--fs-body); }
   .grid-3 { grid-template-columns: 1fr; }
   section { padding-block: 2.5rem; }
+  /* Phones: photo above the text, smaller and centred */
+  .hero-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  .portrait, .portrait-sm { order: -1; width: 55%; max-width: 220px; justify-self: start; }
   .hero { padding-block: 2.5rem 2rem; }
   .lead { font-size: 1.05rem; }
   .btn-row .btn { flex: 1 1 auto; justify-content: center; }

@@ -46,6 +46,8 @@
     <!-- Hero: name, role and the main message first -->
     <section class="hero">
       <div class="container">
+        <div class="hero-grid">
+        <div class="hero-text">
         <p class="kicker">Software engineer · Full-stack JavaScript</p>
         <h1>I build and ship production web apps, end to end.</h1>
         <p class="lead">I'm Akinola Adeyi, a full-stack engineer with 3+ years of experience delivering React, Next.js and Node.js systems for remote teams, from architecture to deployment.</p>
@@ -59,6 +61,13 @@
         <div class="listen">
           <button class="play-btn" id="welcome-btn" type="button" aria-pressed="false" aria-label="Play audio welcome">▶</button>
           <p><strong>Listen to a 20-second welcome</strong>A spoken introduction, for visitors who would rather listen than read.</p>
+        </div>
+        </div>
+          <!-- Portrait: <picture> serves a small WebP to phones and a larger one to desktops -->
+          <picture class="portrait">
+            <source type="image/webp" srcset="assets/img/akinola-sm.webp 400w, assets/img/akinola.webp 800w" sizes="(max-width: 680px) 60vw, 360px">
+            <img src="assets/img/akinola.jpg" srcset="assets/img/akinola-sm.jpg 400w, assets/img/akinola.jpg 800w" sizes="(max-width: 680px) 60vw, 360px" width="800" height="1000" alt="Portrait of Akinola Adeyi" fetchpriority="high">
+          </picture>
         </div>
 
         <!-- Key numbers: data-count is animated by main.js -->
