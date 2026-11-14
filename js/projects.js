@@ -1,7 +1,7 @@
 /* =========================================================
    projects.js — builds project cards from the projects array
    Used on two pages:
-   - Home: shows only projects with featured: true
+   - Home: shows only projects with featured: true, as image tiles
    - Projects: shows all, with filter buttons
    ========================================================= */
 
@@ -18,7 +18,7 @@ function createCard(project) {
 
   return `
     <article class="card reveal">
-      <img src="${project.image}" alt="Preview of ${project.title}" loading="lazy" width="640" height="400">
+      <div class="card-img"><img src="${project.image}" alt="Preview of ${project.title}" loading="lazy" width="1200" height="960"></div>
       <div class="card-body">
         <span class="card-meta">${project.subtitle} · ${project.year}</span>
         <h3>${project.title}</h3>
@@ -29,8 +29,23 @@ function createCard(project) {
     </article>`;
 }
 
-function renderProjects(container, list) {
-  container.innerHTML = list.map(createCard).join("");
+// Home page tile: the whole image is a link to the Projects page,
+// with the name and type laid over the bottom of the picture.
+function createTile(project) {
+  return `
+    <a class="work-item reveal" href="projects.html">
+      <img src="${project.image}" alt="Preview of ${project.title}" loading="lazy" width="1200" height="960">
+      <span class="work-overlay">
+        <span class="work-title">${project.title}</span>
+        <span class="work-meta">${project.subtitle} · ${project.year}</span>
+      </span>
+    </a>`;
+}
+
+// buildHtml is a function passed in (createCard or createTile),
+// so one render function works for both layouts.
+function renderProjects(container, list, buildHtml = createCard) {
+  container.innerHTML = list.map(buildHtml).join("");
   // The new cards were not on the page when main.js ran, so observe them now
   if (typeof observeReveals === "function") observeReveals();
 }
@@ -38,7 +53,7 @@ function renderProjects(container, list) {
 // ---------- Home page: featured projects ----------
 const featuredGrid = document.getElementById("featured-projects");
 if (featuredGrid) {
-  renderProjects(featuredGrid, projects.filter((p) => p.featured));
+  renderProjects(featuredGrid, projects.filter((p) => p.featured), createTile);
 }
 
 // ---------- Projects page: all projects + filters ----------

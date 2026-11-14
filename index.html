@@ -26,7 +26,7 @@
   <header class="site-header">
     <div class="container">
       <nav class="nav" aria-label="Main">
-        <a class="logo" href="index.html">Akinola<span>.</span></a>
+        <a class="logo" href="index.html" aria-label="Akinola Adeyi, home">AKDE</a>
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html" class="active" aria-current="page">Home</a></li>
           <li><a href="about.html">About</a></li>
@@ -43,31 +43,31 @@
   </header>
 
   <main id="main">
-    <!-- Hero: name, role and the main message first -->
+    <!-- Hero: big name and photo on top, welcome message and bio below -->
     <section class="hero">
       <div class="container">
-        <div class="hero-grid">
-        <div class="hero-text">
-        <p class="kicker">Software engineer · Frontend, growing into full-stack</p>
-        <h1>I build fast, polished interfaces for the web.</h1>
-        <p class="lead">Welcome to my portfolio! I'm Akinola Adeyi, a software engineer with 3+ years of experience. I work mainly on the frontend, building fast, accessible React, Next.js and TypeScript interfaces for remote teams, and I'm growing toward full-stack with Node.js, Express and Supabase.</p>
-
-        <div class="btn-row">
-          <a class="btn btn-primary" href="projects.html">View my projects</a>
-          <a class="btn btn-ghost" href="contact.html">Get in touch</a>
-        </div>
-
-        <!-- Audio welcome: read aloud by the browser's Speech Synthesis API (media.js) -->
-        <div class="listen">
-          <button class="play-btn" id="welcome-btn" type="button" aria-pressed="false" aria-label="Play audio welcome">▶</button>
-          <p><strong>Listen to a 20-second welcome</strong>A spoken introduction, for visitors who would rather listen than read.</p>
-        </div>
-        </div>
+        <div class="hero-top">
+          <h1 class="hero-name"><span>Akinola</span><span>Adeyi</span></h1>
           <!-- Portrait: <picture> serves a small WebP to phones and a larger one to desktops -->
           <picture class="portrait">
-            <source type="image/webp" srcset="assets/img/akinola-sm.webp 400w, assets/img/akinola.webp 800w" sizes="(max-width: 680px) 60vw, 360px">
-            <img src="assets/img/akinola.jpg" srcset="assets/img/akinola-sm.jpg 400w, assets/img/akinola.jpg 800w" sizes="(max-width: 680px) 60vw, 360px" width="800" height="1000" alt="Portrait of Akinola Adeyi" fetchpriority="high">
+            <source type="image/webp" srcset="assets/img/akinola-sm.webp 400w, assets/img/akinola.webp 800w" sizes="(max-width: 680px) 132px, 300px">
+            <img src="assets/img/akinola.jpg" srcset="assets/img/akinola-sm.jpg 400w, assets/img/akinola.jpg 800w" sizes="(max-width: 680px) 132px, 300px" width="800" height="1000" alt="Portrait of Akinola Adeyi" fetchpriority="high">
           </picture>
+        </div>
+
+        <div class="hero-bottom">
+          <div>
+            <a class="hero-cta" href="contact.html">Let's work together <span class="arrow" aria-hidden="true">↗</span></a>
+            <!-- Audio welcome: read aloud by the browser's Speech Synthesis API (media.js) -->
+            <div class="listen">
+              <button class="play-btn" id="welcome-btn" type="button" aria-pressed="false" aria-label="Play audio welcome">▶</button>
+              <p><strong>Listen to a 20-second welcome</strong>A spoken introduction, for visitors who would rather listen than read.</p>
+            </div>
+          </div>
+          <div class="hero-text">
+            <p class="hero-role">Software Engineer · Frontend, growing into full-stack</p>
+            <p class="hero-bio">Welcome to my portfolio! I build fast, thoughtful web products with React, Next.js and TypeScript, and I'm growing toward full-stack with Node.js, Express and Supabase.</p>
+          </div>
         </div>
 
         <!-- Key numbers: data-count is animated by main.js -->
@@ -80,66 +80,84 @@
       </div>
     </section>
 
-    <!-- Tech-stack marquee: main.js copies the list so it loops without a gap -->
-    <section class="marquee" aria-label="Technologies I work with">
-      <div class="marquee-track" id="marquee-track">
-        <ul class="marquee-list">
-          <li>React</li>
-          <li>Next.js</li>
-          <li>TypeScript</li>
-          <li>JavaScript</li>
-          <li>Node.js</li>
-          <li>Express</li>
-          <li>Supabase</li>
-          <li>PostgreSQL</li>
-          <li>Tailwind CSS</li>
-          <li>Vite</li>
-          <li>Vercel</li>
-          <li>Railway</li>
-          <li>Framer</li>
-          <li>Git &amp; GitHub</li>
-          <li>Figma</li>
-          <li>REST APIs</li>
-        </ul>
-      </div>
-    </section>
-
     <!-- Featured projects: rendered from js/data.js by projects.js -->
-    <section class="section-alt">
+    <section class="flush-top">
       <div class="container">
-        <div class="section-head reveal">
-          <p class="kicker">Selected work</p>
-          <h2>Three projects I designed, built and deployed on my own</h2>
+        <div class="section-header">
+          <h2 class="section-label">selected work.</h2>
+          <a class="pill-btn" href="projects.html">View all work ↗</a>
         </div>
-        <div class="grid-3" id="featured-projects"></div>
-        <div class="btn-row"><a class="btn btn-ghost" href="projects.html">See all projects →</a></div>
+        <div class="work-grid" id="featured-projects"></div>
       </div>
     </section>
 
-    <section>
-      <div class="container two-col">
+    <section class="flush-top">
+      <div class="container two-col rule-top">
         <div class="reveal">
-          <p class="kicker">What I do</p>
-          <h2>Interfaces people enjoy using, built to last</h2>
-          <p class="muted">Most of my work is the part of the product people see and touch: layout, interaction, performance and accessibility. On my own projects I'm growing into the backend too, building APIs and databases with Node.js and Supabase. Every project ends with written documentation, so the next developer can continue without a handover call.</p>
+          <p class="kicker">How I work</p>
+          <h2>Good interfaces are only half the job.</h2>
         </div>
-        <ul class="plain-list reveal">
-          <li><h3>Interfaces</h3><p>React, Next.js and TypeScript components that work on every screen size and browser.</p></li>
-          <li><h3>Performance and accessibility</h3><p>Fast pages and inclusive UI, like cutting Ojú Ibojú's load time by 90%.</p></li>
-          <li><h3>Growing into full-stack</h3><p>Node.js and Express APIs and Supabase databases in PulseCity, PitchIQ and Ojú Ibojú.</p></li>
-        </ul>
+        <div class="prose reveal">
+          <p>I care about the layer underneath the interface too: API contracts, state, data flow, performance, deployment and the edge cases users actually hit.</p>
+          <p>That means I can move from a Figma screen to a working React interface, connect it to a backend, integrate AI or third-party APIs, and ship the result.</p>
+        </div>
+      </div>
+      <!-- Tech-stack marquee: main.js copies the list so it loops without a gap -->
+      <div class="marquee" aria-label="Technologies I work with">
+        <div class="marquee-track" id="marquee-track">
+          <ul class="marquee-list">
+            <li>React</li>
+            <li>Next.js</li>
+            <li>TypeScript</li>
+            <li>JavaScript</li>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>Supabase</li>
+            <li>PostgreSQL</li>
+            <li>Tailwind CSS</li>
+            <li>Vite</li>
+            <li>Vercel</li>
+            <li>Railway</li>
+            <li>Framer</li>
+            <li>Git &amp; GitHub</li>
+            <li>Figma</li>
+            <li>REST APIs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="flush-top">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-label">about.</h2>
+          <a class="pill-btn" href="about.html">More about me ↗</a>
+        </div>
+        <p class="statement reveal">I'm Akinola, a Nigeria-based engineer who likes turning rough ideas into products people can actually use. I'm strongest at frontend engineering, and I'm growing into the rest of the stack when the product needs it.</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year">2026</span> Akinola Adeyi · Built with HTML, CSS and JavaScript</p>
-      <ul>
-        <li><a href="https://github.com/akintolaadeyi-gif" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://linkedin.com/in/akinola-adeyi" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="mailto:akintolaadeyi@gmail.com">Email</a></li>
-      </ul>
+    <div class="container">
+      <div class="footer-cta">
+        <div>
+          <h2>Have a product to build?<br>Let's talk about it.</h2>
+          <div class="footer-actions">
+            <a class="pill-btn" href="contact.html">Get in touch</a>
+            <span class="availability">Open to remote work</span>
+          </div>
+        </div>
+        <ul class="footer-social">
+          <li><a href="https://linkedin.com/in/akinola-adeyi" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/akintolaadeyi-gif" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-inner">
+        <p>Abuja, Nigeria<br><a href="mailto:akintolaadeyi@gmail.com">akintolaadeyi@gmail.com</a></p>
+        <p class="mid">React · Next.js · TypeScript<br>Frontend · growing into full-stack</p>
+        <p class="end">© <span id="year">2026</span> Akinola Adeyi<br>Built with HTML, CSS and JavaScript</p>
+      </div>
     </div>
   </footer>
 

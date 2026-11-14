@@ -7,25 +7,14 @@
 
 const projects = [
   {
-    title: "PulseCity",
-    subtitle: "Civic issue reporting platform",
+    title: "Folde Studio",
+    subtitle: "Studio website",
     year: 2026,
-    description: "Residents report community problems with photos and locations on a live public map. A 7-table Supabase schema with row-level security powers community upvoting and a staff dashboard for resolving issues in real time.",
-    image: "assets/img/pulsecity.svg",
-    tags: ["React 19", "Supabase", "Google Maps API"],
-    categories: ["web-app", "real-time"],
-    links: { code: "https://github.com/akintolaadeyi-gif/PulseCity" },
-    featured: true
-  },
-  {
-    title: "PitchIQ",
-    subtitle: "Real-time sports dashboard",
-    year: 2026,
-    description: "Live scores, standings and results from 5 external APIs on a 30-second refresh. A data pipeline normalises inconsistent API responses into clean, type-safe tables that non-technical fans can read.",
-    image: "assets/img/pitchiq.svg",
-    tags: ["Next.js 16", "TypeScript", "Supabase Realtime"],
-    categories: ["web-app", "real-time"],
-    links: { live: "https://pitchiq.vercel.app" },
+    description: "The Folde Studio production website, shipped solo in 2 days, owning scope, timeline and delivery end to end.",
+    image: "assets/img/folde.jpg",
+    tags: ["React", "TypeScript"],
+    categories: ["client"],
+    links: {},
     featured: true
   },
   {
@@ -33,7 +22,7 @@ const projects = [
     subtitle: "Streaming platform",
     year: 2025,
     description: "A streaming platform built on the YouTube Data API with genre rows, search and a Continue Watching feed. I found and removed a cascading fetch bottleneck, cutting load time by 90% (30 s to under 3 s).",
-    image: "assets/img/ojuiboju.svg",
+    image: "assets/img/ojuiboju.jpg",
     tags: ["React", "Node.js", "Express", "YouTube API"],
     categories: ["web-app"],
     links: { live: "https://ojuiboju.vercel.app" },
@@ -44,21 +33,32 @@ const projects = [
     subtitle: "NGO website",
     year: 2025,
     description: "A production website for a Nigerian NGO now reaching 1,200+ learners, including a multi-cause donation flow with validation and clear feedback states.",
-    image: "assets/img/canann.svg",
+    image: "assets/img/canann.jpg",
     tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
     categories: ["client"],
     links: { live: "https://canannimpact.org" },
-    featured: false
+    featured: true
   },
   {
-    title: "Folde Studio",
-    subtitle: "Studio website",
+    title: "PitchIQ",
+    subtitle: "Real-time sports dashboard",
     year: 2026,
-    description: "The Folde Studio production website, shipped solo in 2 days, owning scope, timeline and delivery end to end.",
-    image: "assets/img/folde.svg",
-    tags: ["React", "TypeScript"],
-    categories: ["client"],
-    links: {},
+    description: "Live scores, standings and results from 5 external APIs on a 30-second refresh. A data pipeline normalises inconsistent API responses into clean, type-safe tables that non-technical fans can read.",
+    image: "assets/img/pitchiq.jpg",
+    tags: ["Next.js 16", "TypeScript", "Supabase Realtime"],
+    categories: ["web-app", "real-time"],
+    links: { live: "https://pitchiq.vercel.app" },
+    featured: true
+  },
+  {
+    title: "PulseCity",
+    subtitle: "Civic issue reporting platform",
+    year: 2026,
+    description: "Residents report community problems with photos and locations on a live public map. A 7-table Supabase schema with row-level security powers community upvoting and a staff dashboard for resolving issues in real time.",
+    image: "assets/img/pulsecity.svg",
+    tags: ["React 19", "Supabase", "Google Maps API"],
+    categories: ["web-app", "real-time"],
+    links: { code: "https://github.com/akintolaadeyi-gif/PulseCity" },
     featured: false
   },
   {
