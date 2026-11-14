@@ -27,6 +27,7 @@
   /* Spacing and layout */
   --space: 1rem;
   --max: 1100px;
+  --gutter: 1.25rem;
   --radius: 8px;
 }
 
@@ -46,7 +47,11 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* stop phones enlarging text in landscape */
+  text-size-adjust: 100%;
+}
 
 body {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -55,13 +60,24 @@ body {
   color: var(--text);
   background: var(--bg);
   transition: background 0.2s, color 0.2s;
+  overflow-x: hidden; /* safety net: nothing can cause sideways scrolling */
+  overflow-wrap: break-word; /* long words, emails and links wrap instead of overflowing */
 }
 
 img, video { max-width: 100%; display: block; }
 a { color: var(--accent); }
 a:hover { text-decoration: none; }
 
-.container { width: min(var(--max), 100% - 2rem); margin-inline: auto; }
+/* Width + padding instead of min(), so older phone browsers also get side margins */
+.container {
+  width: 100%;
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin-left: auto; margin-right: auto;
+  padding-left: var(--gutter); padding-right: var(--gutter);
+}
+
+/* Grid and flex children may shrink below their content width */
+.two-col > *, .grid-3 > *, .planner > *, .card-body, .task > div { min-width: 0; }
 
 .skip-link {
   position: absolute; left: -999px; top: 0;
@@ -160,7 +176,9 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
   background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
   overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
 }
-.card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(20, 33, 61, 0.08); }
+@media (hover: hover) {
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(20, 33, 61, 0.08); }
+}
 .card img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
 .card-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
 .card-body p { font-size: var(--fs-small); color: var(--muted); }
@@ -226,10 +244,19 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
 .field { display: grid; gap: 0.35rem; margin-bottom: 1rem; }
 .field label { font-size: var(--fs-small); font-weight: 600; }
 .field input, .field select, .field textarea {
+  width: 100%; min-width: 0; max-width: 100%; display: block;
   font: inherit; font-size: var(--fs-small); color: var(--text);
+  -webkit-appearance: none; appearance: none; min-height: 44px;
   padding: 0.65rem 0.75rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg);
 }
 .field textarea { min-height: 140px; resize: vertical; }
+.field select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px; background-repeat: no-repeat; padding-right: 2.25rem;
+}
+.field input[type="date"] { line-height: 1.4; }
+.field input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 .field.invalid input, .field.invalid textarea { border-color: var(--danger); }
 .error { font-size: 0.8rem; color: var(--danger); min-height: 1.1em; }
 
@@ -244,7 +271,7 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
   padding: 0.85rem 1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg);
 }
 .task input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--success); cursor: pointer; }
-.task-title { font-weight: 500; }
+.task-title { font-weight: 500; overflow-wrap: anywhere; }
 .task-info { font-size: 0.8rem; color: var(--muted); }
 .task.done .task-title { text-decoration: line-through; color: var(--muted); }
 .task .overdue { color: var(--danger); font-weight: 600; }
@@ -263,6 +290,7 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
 
 /* ---------- Contact ---------- */
 .contact-list { list-style: none; display: grid; gap: 1rem; margin-top: 1.5rem; }
+.contact-list a { overflow-wrap: anywhere; }
 .contact-list span { display: block; font-size: var(--fs-small); color: var(--muted); }
 .form-status { margin-top: 1rem; font-size: var(--fs-small); font-weight: 600; }
 .form-status.ok { color: var(--success); }
@@ -282,20 +310,65 @@ h3 { font-size: var(--fs-body); font-weight: 600; margin-bottom: 0.25rem; }
 }
 
 /* ---------- Responsive ---------- */
+
+/* Large screens: wider content and slightly bigger type */
+@media (min-width: 1600px) {
+  :root { --max: 1280px; }
+  html { font-size: 17px; }
+}
+@media (min-width: 2200px) {
+  :root { --max: 1440px; }
+  html { font-size: 19px; }
+}
+
+/* Tablets and small laptops */
 @media (max-width: 900px) {
   .grid-3 { grid-template-columns: 1fr 1fr; }
-  .two-col, .planner { grid-template-columns: 1fr; }
+  .two-col, .planner { grid-template-columns: 1fr; gap: 2rem; }
   .stats { grid-template-columns: 1fr 1fr; }
 }
+
+/* Phones */
 @media (max-width: 680px) {
+  :root { --gutter: 1rem; --fs-h2: 1.5rem; }
   .menu-toggle { display: grid; }
   .nav-links {
     display: none; position: absolute; top: 64px; left: 0; right: 0;
     flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(20, 33, 61, 0.08);
   }
   .nav-links.open { display: flex; }
-  .nav-links a { display: block; padding: 0.9rem 1rem; border-bottom: 1px solid var(--line); }
+  .nav-links a { display: block; padding: 0.9rem var(--gutter); border-bottom: 1px solid var(--line); font-size: var(--fs-body); }
   .grid-3 { grid-template-columns: 1fr; }
-  section { padding-block: 3rem; }
-  .hero { padding-block: 3rem 2rem; }
+  section { padding-block: 2.5rem; }
+  .hero { padding-block: 2.5rem 2rem; }
+  .lead { font-size: 1.05rem; }
+  .btn-row .btn { flex: 1 1 auto; justify-content: center; }
+  .stats { margin-top: 2rem; }
+  .stat strong { font-size: 1.4rem; }
+  .listen { gap: 0.75rem; }
+
+  /* 16px inputs stop iPhones zooming in when a field is tapped */
+  .field input, .field select, .field textarea { font-size: 16px; }
+
+  /* Planner: toolbar stacks, task rows stay tidy */
+  .task-toolbar { flex-direction: column; align-items: flex-start; }
+  .task { grid-template-columns: auto 1fr; padding: 0.8rem; }
+  .task .delete-btn { grid-column: 2; justify-self: start; padding-left: 0; }
+  .panel { padding: 1.25rem; }
+
+  /* Video controls wrap onto two lines */
+  .player-bar { flex-wrap: wrap; gap: 0.5rem; }
+  .progress { flex-basis: 100%; order: -1; height: 8px; }
+  .time { min-width: 0; margin-right: auto; text-align: left; }
+
+  .footer-inner { flex-direction: column; }
+}
+
+/* Very small phones (e.g. iPhone SE 1st gen, Galaxy Fold) */
+@media (max-width: 360px) {
+  :root { --gutter: 0.85rem; --fs-h1: 1.9rem; }
+  .stats { grid-template-columns: 1fr; }
+  .filters { gap: 0.4rem; }
+  .filter-btn { padding: 0.4rem 0.75rem; }
 }

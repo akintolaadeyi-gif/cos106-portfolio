@@ -19,6 +19,17 @@ menuToggle.addEventListener("click", () => {
   menuToggle.textContent = isOpen ? "✕" : "☰";
 });
 
+function closeMenu() {
+  navLinks.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open menu");
+  menuToggle.textContent = "☰";
+}
+
+// Close the menu after choosing a link, or when the screen becomes wide
+navLinks.addEventListener("click", (event) => { if (event.target.closest("a")) closeMenu(); });
+window.addEventListener("resize", () => { if (window.innerWidth > 680) closeMenu(); });
+
 // ---------- 2. Theme switch ----------
 const themeToggle = document.getElementById("theme-toggle");
 const root = document.documentElement; // the <html> element
@@ -44,17 +55,23 @@ themeToggle.addEventListener("click", () => {
 // ---------- 3. Scroll reveal ----------
 // The observer tells us when an element enters the viewport,
 // so we only animate it once the visitor scrolls to it.
-const revealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target); // animate once only
-    }
-  });
-}, { threshold: 0.15 });
+// threshold 0 + a small rootMargin: tall blocks on phones still trigger
+const revealObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target); // animate once only
+        }
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -40px 0px" })
+  : null;
 
 function observeReveals() {
-  document.querySelectorAll(".reveal:not(.visible)").forEach((el) => revealObserver.observe(el));
+  document.querySelectorAll(".reveal:not(.visible)").forEach((el) => {
+    // Older browsers without IntersectionObserver just show everything
+    if (revealObserver) revealObserver.observe(el); else el.classList.add("visible");
+  });
 }
 observeReveals();
 
@@ -73,7 +90,7 @@ function animateCount(el) {
   requestAnimationFrame(step);
 }
 
-const counterObserver = new IntersectionObserver((entries, observer) => {
+const counterObserver = !("IntersectionObserver" in window) ? null : new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       animateCount(entry.target);
@@ -81,7 +98,9 @@ const counterObserver = new IntersectionObserver((entries, observer) => {
     }
   });
 });
-document.querySelectorAll("[data-count]").forEach((el) => counterObserver.observe(el));
+document.querySelectorAll("[data-count]").forEach((el) => {
+  if (counterObserver) counterObserver.observe(el); else el.textContent = Number(el.dataset.count).toLocaleString();
+});
 
 // ---------- 5. Footer year ----------
 document.getElementById("year").textContent = new Date().getFullYear();
