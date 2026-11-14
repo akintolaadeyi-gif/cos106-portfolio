@@ -2,9 +2,7 @@
    media.js — audio and video features
    1. Recorded audio welcome on the Home page (my own voice,
       played with an HTML <audio> element)
-   2. "Listen to this page" on About, using the browser's
-      Speech Synthesis API
-   3. A custom video player for the video introduction:
+   2. A custom video player for the video introduction:
       play/pause, seek bar, time, captions and mute
    ========================================================= */
 
@@ -30,43 +28,7 @@ function setupAudioButton(button, audio) {
 
 setupAudioButton(document.getElementById("welcome-btn"), document.getElementById("welcome-audio"));
 
-// ---------- 2. Speech synthesis ("Listen to this page") ----------
-function getBioText() {
-  // Read the visible text of the main sections on the About page
-  const parts = [...document.querySelectorAll("main h1, main .lead, main h2, main h3, main p")]
-    .filter((el) => !el.closest(".listen, .player"))
-    .map((el) => el.textContent.trim());
-  return parts.join(". ");
-}
-
-function setupSpeechButton(button, getText) {
-  if (!button) return;
-  if (!("speechSynthesis" in window)) {
-    button.closest(".listen").hidden = true; // hide it if the browser can't speak
-    return;
-  }
-
-  button.addEventListener("click", () => {
-    // Second click stops the speech
-    if (speechSynthesis.speaking) {
-      speechSynthesis.cancel();
-      return;
-    }
-    const utterance = new SpeechSynthesisUtterance(getText());
-    utterance.lang = "en-GB";
-    utterance.rate = 1;
-
-    utterance.onstart = () => button.setAttribute("aria-pressed", "true"); // CSS swaps play for stop
-    utterance.onend = utterance.onerror = () => button.setAttribute("aria-pressed", "false");
-
-    speechSynthesis.speak(utterance);
-  });
-}
-
-setupSpeechButton(document.getElementById("bio-btn"), getBioText);
-window.addEventListener("beforeunload", () => { if ("speechSynthesis" in window) speechSynthesis.cancel(); });
-
-// ---------- 3. Custom video player ----------
+// ---------- 2. Custom video player ----------
 const video = document.getElementById("intro-video");
 
 if (video) {

@@ -19,7 +19,7 @@ A five-page personal portfolio built with **HTML, CSS and plain JavaScript**, wi
 - **Academic Planner** (`js/planner.js`): add tasks with course, due date and priority; mark completed; delete; overdue warnings; progress bar; view filter; clear completed; tasks saved in `localStorage`; completion chime made with the Web Audio API.
 - **Projects** (`js/data.js`, `js/projects.js`): cards built from an array of objects; filters using `Array.filter()`.
 - **Shared** (`js/main.js`): mobile menu, light/dark theme saved in `localStorage`, scroll reveal with `IntersectionObserver`, counting statistics with `requestAnimationFrame`.
-- **Media** (`js/media.js`): spoken welcome and "listen to this page" with the Web Speech API; custom video player (play/pause, seek, time, captions, mute).
+- **Media** (`js/media.js`): recorded audio welcome in my own voice (HTML audio); custom video player (play/pause, seek, time, captions, mute).
 - **Contact** (`js/contact.js`): per-field validation rules, email regular expression, live character counter, `mailto:` sending.
 
 ## Structure
