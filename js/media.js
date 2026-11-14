@@ -1,17 +1,36 @@
 /* =========================================================
    media.js — audio and video features
-   1. Spoken welcome / "listen to this page" using the
-      browser's Speech Synthesis API (no audio file needed)
-   2. A custom video player for the video introduction:
+   1. Recorded audio welcome on the Home page (my own voice,
+      played with an HTML <audio> element)
+   2. "Listen to this page" on About, using the browser's
+      Speech Synthesis API
+   3. A custom video player for the video introduction:
       play/pause, seek bar, time, captions and mute
    ========================================================= */
 
-// ---------- 1. Speech synthesis ----------
-const WELCOME_TEXT =
-  "Hi, I'm Akinola Adeyi, a software engineer. I work mainly on the frontend and I'm growing toward full-stack. " +
-  "I build websites and web apps with React, Next dot J S and TypeScript. " +
-  "Have a look at my projects, try the academic planner, and get in touch if you'd like to work together.";
+// ---------- 1. Recorded audio welcome ----------
+function setupAudioButton(button, audio) {
+  if (!button || !audio) return;
 
+  button.addEventListener("click", () => {
+    // Second click stops the recording and rewinds it
+    if (!audio.paused) {
+      audio.pause();
+      audio.currentTime = 0;
+      return;
+    }
+    audio.play();
+  });
+
+  // aria-pressed drives the play/stop icon in CSS, and tells screen readers the state
+  audio.addEventListener("play", () => button.setAttribute("aria-pressed", "true"));
+  audio.addEventListener("pause", () => button.setAttribute("aria-pressed", "false"));
+  audio.addEventListener("ended", () => button.setAttribute("aria-pressed", "false"));
+}
+
+setupAudioButton(document.getElementById("welcome-btn"), document.getElementById("welcome-audio"));
+
+// ---------- 2. Speech synthesis ("Listen to this page") ----------
 function getBioText() {
   // Read the visible text of the main sections on the About page
   const parts = [...document.querySelectorAll("main h1, main .lead, main h2, main h3, main p")]
@@ -44,11 +63,10 @@ function setupSpeechButton(button, getText) {
   });
 }
 
-setupSpeechButton(document.getElementById("welcome-btn"), () => WELCOME_TEXT);
 setupSpeechButton(document.getElementById("bio-btn"), getBioText);
 window.addEventListener("beforeunload", () => { if ("speechSynthesis" in window) speechSynthesis.cancel(); });
 
-// ---------- 2. Custom video player ----------
+// ---------- 3. Custom video player ----------
 const video = document.getElementById("intro-video");
 
 if (video) {
