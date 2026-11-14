@@ -29,12 +29,12 @@ function loadTasks() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) return JSON.parse(saved); // text → array of objects
   } catch (e) { /* storage blocked or corrupted */ }
-
+  const inDays = (n) => new Date(Date.now() + n * 86400000).toISOString().slice(0, 10); // date n days from today
   // First visit: a few example tasks so the planner isn't empty
   return [
-    { id: 1, title: "Submit COS 106 portfolio", course: "COS 106", due: "", priority: "high", done: false },
-    { id: 2, title: "Revise JavaScript DOM notes", course: "COS 106", due: "", priority: "medium", done: false },
-    { id: 3, title: "Read chapter 3 of the course text", course: "GST 101", due: "", priority: "low", done: true }
+    { id: 1, title: "Submit COS 106 portfolio", course: "COS 106", due: inDays(7), priority: "high", done: false },
+    { id: 2, title: "Revise JavaScript DOM notes", course: "COS 106", due: inDays(3), priority: "medium", done: false },
+    { id: 3, title: "Read chapter 3 of the course text", course: "GST 101", due: inDays(-2), priority: "low", done: true }
   ];
 }
 
